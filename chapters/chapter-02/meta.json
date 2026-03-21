@@ -62,7 +62,7 @@
       {
         "type": "thought",
         "text": "doordoordoordoor",
-        "position": "pos-bot-right",
+        "position": "pos-mid-right",
         "tail": null,
         "modifier": "quiet",
         "character": "bagel"
