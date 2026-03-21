@@ -85,7 +85,7 @@
       {
         "type": "speech",
         "text": "...Leah.",
-        "position": "pos-bot-left",
+        "position": "pos-mid-right",
         "tail": "left",
         "modifier": "quiet",
         "character": "irvin"
