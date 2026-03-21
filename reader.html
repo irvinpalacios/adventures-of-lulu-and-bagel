@@ -577,6 +577,7 @@
     function buildThoughtBubble(b) {
       const container = document.createElement('div');
       const cls = ['bubble-container', 'thought'];
+      if (b.modifier) cls.push(b.modifier);
       if (b.position) cls.push(b.position);
       container.className = cls.join(' ');
       if (b.character) container.dataset.character = b.character;

@@ -1,0 +1,191 @@
+{
+  "chapterNumber": 2,
+  "title": "Bagel's Big Day",
+  "subtitle": "Chapter 2",
+  "description": "It's Bagel's birthday. A walk, a car ride, an In-N-Out Puppy Patty, and the most dignified birthday hat ever worn.",
+  "panelCount": 12,
+  "coverImage": "cover.png",
+  "dialogue": {
+    "panel_1": [
+      {
+        "type": "speech",
+        "text": "Today's the day.",
+        "position": "pos-mid-left",
+        "tail": "right",
+        "modifier": "quiet",
+        "character": "leah"
+      },
+      {
+        "type": "speech",
+        "text": "He has no idea.",
+        "position": "pos-mid-right",
+        "tail": "left",
+        "modifier": "quiet",
+        "character": "irvin"
+      },
+      {
+        "type": "thought",
+        "text": "I know.",
+        "position": "pos-mid-center",
+        "tail": null,
+        "modifier": "quiet",
+        "character": "lulu"
+      }
+    ],
+    "panel_2": [
+      {
+        "type": "speech",
+        "text": "Bagel... want to go for a—",
+        "position": "pos-top-right",
+        "tail": "left",
+        "character": "irvin"
+      }
+    ],
+    "panel_3": [
+      {
+        "type": "thought",
+        "text": "WALK WALK WALK WALK",
+        "position": "pos-top-center",
+        "tail": null,
+        "modifier": "dramatic",
+        "character": "bagel"
+      }
+    ],
+    "panel_4": [
+      {
+        "type": "speech",
+        "text": "Hold still—",
+        "position": "pos-mid-left",
+        "tail": "right",
+        "character": "leah"
+      },
+      {
+        "type": "thought",
+        "text": "doordoordoordoor",
+        "position": "pos-bot-right",
+        "tail": null,
+        "modifier": "quiet",
+        "character": "bagel"
+      }
+    ],
+    "panel_5": [
+      {
+        "type": "speech",
+        "text": "He thinks he's in charge.",
+        "position": "pos-top-left",
+        "tail": "right",
+        "character": "irvin"
+      },
+      {
+        "type": "speech",
+        "text": "He IS in charge.",
+        "position": "pos-top-right",
+        "tail": "left",
+        "character": "leah"
+      }
+    ],
+    "panel_6": [
+      {
+        "type": "speech",
+        "text": "You've got this, buddy.",
+        "position": "pos-top-left",
+        "tail": "left",
+        "character": "leah"
+      },
+      {
+        "type": "thought",
+        "text": "I've trained for this.",
+        "position": "pos-mid-center",
+        "tail": null,
+        "character": "bagel"
+      }
+    ],
+    "panel_7": [
+      {
+        "type": "thought",
+        "text": "...I see it.",
+        "position": "pos-mid-center",
+        "tail": null,
+        "modifier": "quiet",
+        "character": "bagel"
+      },
+      {
+        "type": "speech",
+        "text": "He spotted it from a mile away.",
+        "position": "pos-top-center",
+        "tail": "left",
+        "modifier": "quiet",
+        "character": "irvin"
+      }
+    ],
+    "panel_8": [
+      {
+        "type": "speech",
+        "text": "Special delivery for the birthday boy.",
+        "position": "pos-top-left",
+        "tail": "left",
+        "character": "leah"
+      },
+      {
+        "type": "thought",
+        "text": "...birthday?",
+        "position": "pos-mid-right",
+        "tail": null,
+        "character": "bagel"
+      }
+    ],
+    "panel_9": [
+      {
+        "type": "speech",
+        "text": "Look at him.",
+        "position": "pos-mid-left",
+        "tail": "right",
+        "modifier": "quiet",
+        "character": "leah"
+      }
+    ],
+    "panel_10": [
+      {
+        "type": "speech",
+        "text": "He looks so dignified.",
+        "position": "pos-top-left",
+        "tail": "right",
+        "character": "irvin"
+      },
+      {
+        "type": "speech",
+        "text": "Don't laugh — he can tell.",
+        "position": "pos-top-right",
+        "tail": "right",
+        "character": "leah"
+      }
+    ],
+    "panel_11": [
+      {
+        "type": "speech",
+        "text": "Okay Bagel... ready?",
+        "position": "pos-top-left",
+        "tail": "left",
+        "character": "leah"
+      },
+      {
+        "type": "thought",
+        "text": "...yes.",
+        "position": "pos-top-right",
+        "tail": null,
+        "modifier": "quiet",
+        "character": "bagel"
+      }
+    ],
+    "panel_12": [
+      {
+        "type": "thought",
+        "text": "BEST. DAY. EVER.",
+        "position": "pos-top-center",
+        "tail": null,
+        "modifier": "dramatic",
+        "character": "bagel"
+      }
+    ]
+  }
+}

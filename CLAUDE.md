@@ -98,6 +98,20 @@ No internet needed. No installation needed.
    the page
 4. Netlify gives you a live URL in 30 seconds
 
+## Chapter 2 — Bagel's Big Day
+- Panels: 12
+- Story: Bagel's birthday adventure. Walk tease,
+  car ride, In-N-Out Puppy Patty, park celebration,
+  birthday hat, and the most dramatic food countdown
+  ever committed to a webtoon panel.
+- Key panels:
+  Panel 3: WALK WALK WALK starburst bubble
+  Panel 7: Bagel airborne into car — I AM FLYING
+  Panel 11: Maximum drool tension close-up
+  Panel 12: BEST. DAY. EVER. explosion panel
+- Art generated with: ChatGPT DALL-E
+- Location: chapters/chapter-02/
+
 ## Future Chapters
 This is Chapter 1. Future chapters can be added by:
 1. Creating /chapter-02/panels/ folder
