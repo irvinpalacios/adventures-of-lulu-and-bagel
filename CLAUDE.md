@@ -52,8 +52,8 @@ Lulu and Bagel across 12 illustrated panels.
 - Panel 7: Irvin: "...Leah."
 - Panel 8: Lulu thought bubble: "I can see everything
   from up here." / Leah: "LULU!!!"
-- Panel 9: Leah: "Go LEFT — no, YOUR left!!" /
-  Irvin: "THEY'RE THE SAME LEFT—"
+- Panel 9: Leah: "THEY'RE THE SAME LEFT!!" /
+  Irvin: "Go LEFT! No! YOUR left!!"
 - Panel 10: Irvin: "You absolute little—
   ...I love you so much."
 - Panel 11: Leah: "I can't believe that just happened."
@@ -61,7 +61,7 @@ Lulu and Bagel across 12 illustrated panels.
 - Panel 12: No dialogue. Soft shimmer effect only.
 
 ## File Structure
-lulu-bagel-webtoon/
+adventures-of-lulu-and-bagel/
 ├── index.html
 ├── CLAUDE.md
 ├── README.txt
@@ -103,6 +103,60 @@ This is Chapter 1. Future chapters can be added by:
 1. Creating /chapter-02/panels/ folder
 2. Adding a new section in index.html for chapter 2
 3. Adding a chapter select screen at the opening
+
+## Multi-Chapter Infrastructure
+
+### URL structure
+index.html              — series landing page
+reader.html?chapter=01  — chapter 1 reader
+reader.html?chapter=02  — chapter 2 reader
+
+### How the reader engine works
+reader.html is a reusable engine. It reads the
+chapter URL parameter, fetches the corresponding
+meta.json, and dynamically renders all panels,
+dialogue, and effects. No changes to reader.html
+are ever needed to add new chapters.
+
+### How to add a new chapter
+1. Create folder: chapters/chapter-XX/
+2. Create folder: chapters/chapter-XX/panels/
+3. Add cover: chapters/chapter-XX/cover.png
+4. Add panels: panel_01.png through panel_XX.png
+5. Create chapters/chapter-XX/meta.json with:
+   - chapterNumber, title, subtitle, description
+   - panelCount
+   - dialogue object with all bubble data
+6. Add one new object to CHAPTERS array in index.html
+7. Push to GitHub — Netlify auto-deploys
+
+### meta.json dialogue bubble types
+- "speech"  — organic oval with pointed manga tail
+- "thought" — cloud shape with three dot trail
+- modifier "dramatic" — 12-point starburst shape
+- modifier "quiet"    — smaller, faded, thin tail
+
+### Bubble position class values
+pos-top-left    pos-top-center    pos-top-right
+pos-mid-left    pos-mid-center    pos-mid-right
+pos-bot-left    pos-bot-center    pos-bot-right
+
+### Tail direction values
+left | right | top | bottom
+
+### Updated file structure
+adventure-of-lulu-and-bagel/
+├── index.html      — series landing page
+├── reader.html     — reusable reader engine
+├── CLAUDE.md
+├── README.txt
+└── chapters/
+    └── chapter-01/
+        ├── cover.png
+        ├── meta.json
+        └── panels/
+            ├── panel_01.png
+            └── ... through panel_12.png
 
 ## Customization Notes
 - Background color: #0d0d0d

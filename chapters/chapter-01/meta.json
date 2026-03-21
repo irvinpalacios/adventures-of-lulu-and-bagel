@@ -1,0 +1,146 @@
+{
+  "chapterNumber": 1,
+  "title": "A Day at Home",
+  "subtitle": "Chapter 1",
+  "description": "Bagel steals dropped food from the kitchen. Lulu conquers the roof. A tiny fairy watches from the windowsill.",
+  "panelCount": 12,
+  "coverImage": "cover.png",
+  "dialogue": {
+    "panel_1": [
+      {
+        "type": "speech",
+        "text": "Should we add more garlic?",
+        "position": "pos-top-left",
+        "tail": "left",
+        "character": "leah"
+      },
+      {
+        "type": "speech",
+        "text": "Always more garlic.",
+        "position": "pos-top-right",
+        "tail": "right",
+        "character": "irvin"
+      }
+    ],
+    "panel_2": [],
+    "panel_3": [
+      {
+        "type": "thought",
+        "text": "MINE.",
+        "position": "pos-top-center",
+        "tail": null,
+        "modifier": "dramatic",
+        "character": "bagel"
+      }
+    ],
+    "panel_4": [
+      {
+        "type": "speech",
+        "text": "BAGEL—",
+        "position": "pos-mid-left",
+        "tail": "left",
+        "character": "leah"
+      },
+      {
+        "type": "speech",
+        "text": "He was SO FAST—",
+        "position": "pos-mid-right",
+        "tail": "right",
+        "character": "irvin"
+      }
+    ],
+    "panel_5": [
+      {
+        "type": "speech",
+        "text": "...Did you hear that?",
+        "position": "pos-mid-left",
+        "tail": "left",
+        "character": "leah"
+      },
+      {
+        "type": "speech",
+        "text": "Was that Lulu?",
+        "position": "pos-mid-right",
+        "tail": "right",
+        "character": "irvin"
+      }
+    ],
+    "panel_6": [
+      {
+        "type": "speech",
+        "text": "Lulu? Lulu!!",
+        "position": "pos-top-left",
+        "tail": "left",
+        "character": "leah"
+      },
+      {
+        "type": "speech",
+        "text": "She's not down here—",
+        "position": "pos-top-right",
+        "tail": "right",
+        "character": "irvin"
+      }
+    ],
+    "panel_7": [
+      {
+        "type": "speech",
+        "text": "...Leah.",
+        "position": "pos-bot-left",
+        "tail": "left",
+        "modifier": "quiet",
+        "character": "irvin"
+      }
+    ],
+    "panel_8": [
+      {
+        "type": "thought",
+        "text": "I can see everything from up here.",
+        "position": "pos-top-center",
+        "tail": null,
+        "character": "lulu"
+      },
+      {
+        "type": "speech",
+        "text": "LULU!!!",
+        "position": "pos-bot-center",
+        "tail": "top",
+        "character": "leah"
+      }
+    ],
+    "panel_9": [
+      {
+        "type": "speech",
+        "text": "THEY'RE THE SAME LEFT!!",
+        "position": "pos-top-left",
+        "tail": "left",
+        "character": "leah"
+      },
+      {
+        "type": "speech",
+        "text": "Go LEFT! No! YOUR left!!",
+        "position": "pos-mid-right",
+        "tail": "right",
+        "character": "irvin"
+      }
+    ],
+    "panel_10": [
+      {
+        "type": "speech",
+        "text": "You absolute little... I love you so much.",
+        "position": "pos-top-left",
+        "tail": "right",
+        "character": "irvin"
+      }
+    ],
+    "panel_11": [
+      {
+        "type": "speech",
+        "text": "I can't believe that just happened.",
+        "position": "pos-top-right",
+        "tail": "left",
+        "character": "leah"
+      }
+    ],
+    "panel_12": []
+  }
+}

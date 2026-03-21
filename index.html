@@ -3,21 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lulu & Bagel: A Day at Home</title>
+  <title>Lulu &amp; Bagel — Adventures of a very full life.</title>
 
   <style>
-    /* =============================================
-       CSS CUSTOM PROPERTIES (mirrors CONFIG object)
-       ============================================= */
-    :root {
-      --bg-color: #0d0d0d;
-      --panel-max-width: 720px;
-      --panel-gap: 20px;
-      --text-primary: #ffffff;
-      --text-soft: rgba(255, 255, 255, 0.75);
-      --overlay-opacity: 0.45;
-    }
-
     /* =============================================
        RESET & BASE
        ============================================= */
@@ -32,12 +20,15 @@
     }
 
     body {
-      background-color: var(--bg-color);
-      color: var(--text-primary);
+      background-color: #0d0d0d;
+      color: #ffffff;
       font-family: Georgia, 'Times New Roman', serif;
       overflow-x: hidden;
       scrollbar-width: none;
       -ms-overflow-style: none;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
 
     body::-webkit-scrollbar {
@@ -45,366 +36,307 @@
     }
 
     /* =============================================
-       OPENING TITLE SCREEN
+       SPARKLE CANVAS — fixed behind everything
        ============================================= */
-    #title-screen {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      overflow: hidden;
-      background-image: url('./panels/cover.png');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-    }
-
-    #title-screen::before {
-      content: '';
-      position: absolute;
+    #sparkle-canvas {
+      position: fixed;
       inset: 0;
-      background-color: rgba(0, 0, 0, var(--overlay-opacity));
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
       z-index: 0;
     }
 
-    .title-content {
+    /* All page content sits above canvas */
+    header, main, footer {
       position: relative;
       z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 16px;
-      padding: 0 24px;
-    }
-
-    .title-main {
-      font-size: clamp(2rem, 6vw, 3.5rem);
-      font-weight: bold;
-      color: var(--text-primary);
-      line-height: 1.2;
-      letter-spacing: 0.02em;
-      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
-    }
-
-    .title-sub {
-      font-size: clamp(1rem, 2.5vw, 1.3rem);
-      font-style: italic;
-      color: var(--text-soft);
-      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7);
-    }
-
-    .begin-btn {
-      margin-top: 12px;
-      padding: 14px 36px;
-      font-family: Georgia, serif;
-      font-size: 1.05rem;
-      font-style: italic;
-      color: #0d0d0d;
-      background-color: rgba(255, 255, 255, 0.92);
-      border: none;
-      border-radius: 50px;
-      cursor: pointer;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-      transition: background-color 0.2s ease, transform 0.15s ease;
-    }
-
-    .begin-btn:hover {
-      background-color: #ffffff;
-      transform: translateY(-2px);
-    }
-
-    .begin-btn:active {
-      transform: translateY(0);
     }
 
     /* =============================================
-       PANEL SECTION
+       HEADER
        ============================================= */
-    #panels-section {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: var(--panel-gap) 0;
-      gap: var(--panel-gap);
+    header {
+      text-align: center;
+      padding: 60px 24px 48px;
     }
 
-    /* Each panel is positioned so bubbles can overlay */
-    .panel-wrapper {
+    .series-title {
+      font-size: clamp(2.6rem, 7vw, 4.2rem);
+      font-weight: bold;
+      color: #ffffff;
+      letter-spacing: 0.02em;
+      line-height: 1.15;
+      text-shadow: 0 2px 16px rgba(0, 0, 0, 0.7);
+    }
+
+    .series-tagline {
+      margin-top: 12px;
+      font-size: clamp(0.95rem, 2.2vw, 1.2rem);
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.6);
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.6);
+    }
+
+    .header-divider {
+      margin: 24px auto 0;
+      width: 120px;
+      height: 1px;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 255, 255, 0.25),
+        transparent
+      );
+      border: none;
+    }
+
+    /* =============================================
+       MAIN — CHAPTER GRID
+       ============================================= */
+    main {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px 60px;
+    }
+
+    #chapter-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+      width: 100%;
+      max-width: 900px;
+      align-items: start;
+    }
+
+    /* =============================================
+       CHAPTER CARD — shared base
+       ============================================= */
+    .chapter-card {
+      background-color: #1a1a1a;
+      border: 0.5px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    /* ── Available card interactive states ───────── */
+    .chapter-card.available {
+      cursor: pointer;
+    }
+
+    .chapter-card.available:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.6);
+    }
+
+    /* ── Coming-soon card: no hover effects ─────── */
+    .chapter-card.coming-soon {
+      opacity: 0.7;
+      cursor: default;
+    }
+
+    /* ── Image area (top ~60% of card) ──────────── */
+    .card-image-wrap {
       position: relative;
       width: 100%;
-      max-width: var(--panel-max-width);
-      min-height: 200px;
-      /* Clip bubbles so they never overflow the panel */
+      aspect-ratio: 4 / 3;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .card-cover {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .chapter-card.available:hover .card-cover {
+      transform: scale(1.02);
+      filter: brightness(0.85);
+    }
+
+    /* Placeholder for coming-soon (no image) */
+    .card-placeholder {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background-color: #111111;
       overflow: hidden;
     }
 
-    .panel-wrapper img {
-      display: block;
-      width: 100%;
-      height: auto;
-      border-radius: 2px;
-    }
-
-    /* =============================================
-       MANGA BUBBLE SYSTEM
-       ─────────────────────────────────────────────
-       Each bubble = .bubble-container (positioned,
-       carries drop-shadow filter) + .bubble-body
-       (organic oval, white fill, text) + ::after
-       pseudo-element (clip-path pointed tail).
-
-       CSS filter:drop-shadow() on the container
-       traces the combined alpha of body + tail,
-       producing one seamless crisp outline.
-       ============================================= */
-
-    /* ── Container ──────────────────────────────── */
-    .bubble-container {
-      position: absolute;
-      z-index: 10;
-      max-width: 44%;
-      pointer-events: none;
-      user-select: none;
-      /* Unified outline + lift shadow around body+tail */
-      filter:
-        drop-shadow(0 0 0 1.5px #1a1a1a)
-        drop-shadow(0 2px 6px rgba(0, 0, 0, 0.38));
-    }
-
-    /* ── Oval body ────────────────────────────────
-       border-radius uses 8 values (horizontal/
-       vertical) to create an organic, slightly
-       irregular oval instead of a perfect ellipse.
-       ─────────────────────────────────────────── */
-    .bubble-body {
-      background: #ffffff;
-      color: #1a1a1a;
-      font-family: 'Arial', 'Helvetica Neue', sans-serif;
-      font-size: clamp(0.63rem, 1.55vw, 0.87rem);
-      font-weight: 600;
-      line-height: 1.35;
-      padding: 8px 13px;
-      /* Organic irregular oval */
-      border-radius: 58% 42% 52% 48% / 50% 56% 44% 52%;
-    }
-
-    /* ── Tail base (shared geometry) ────────────── */
-    .bubble-container::after {
+    /* Shimmer sweep animation */
+    .card-placeholder::after {
       content: '';
       position: absolute;
-      background: #ffffff;
-      width: 15px;
-      height: 14px;
-    }
-
-    /* tail-left — sharp point aims down-left,
-       tail emerges from the bottom-left of the oval */
-    .bubble-container.tail-left::after {
-      bottom: -12px;
-      left: 20%;
-      clip-path: polygon(15% 0%, 95% 0%, 0% 100%);
-    }
-
-    /* tail-right — point aims down-right */
-    .bubble-container.tail-right::after {
-      bottom: -12px;
-      right: 20%;
-      clip-path: polygon(5% 0%, 85% 0%, 100% 100%);
-    }
-
-    /* tail-top — point aims upward
-       (bubble sits at bottom of panel, thinker above) */
-    .bubble-container.tail-top::after {
-      top: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      clip-path: polygon(0% 100%, 100% 100%, 50% 0%);
-    }
-
-    /* tail-bottom — point aims downward
-       (bubble at top of panel, character below) */
-    .bubble-container.tail-bottom::after {
-      bottom: -12px;
-      left: 50%;
-      transform: translateX(-50%);
-      clip-path: polygon(0% 0%, 100% 0%, 50% 100%);
-    }
-
-    /* ── Thought bubble ──────────────────────────
-       More circular, italic text. No tail.
-       Uses direct border (not drop-shadow) so the
-       three dot-trail circles stay visually
-       independent with their own outlines.
-       ─────────────────────────────────────────── */
-    .bubble-container.thought {
-      /* Override the filter: use border directly on
-         body instead so dots stay separate */
-      filter: none;
-      max-width: 50%;
-    }
-
-    .bubble-container.thought::after {
-      display: none; /* No tail on thought bubbles */
-    }
-
-    .thought-body {
-      border: 1.5px solid #1a1a1a;
-      border-radius: 50%;
-      font-style: italic;
-      padding: 10px 18px;
-      text-align: center;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-    }
-
-    /* Three decreasing dots — classic manga thought trail.
-       Positioned absolutely relative to container,
-       trail extends downward from the bubble. */
-    .thought-dot {
-      position: absolute;
-      background: #ffffff;
-      border: 1.5px solid #1a1a1a;
-      border-radius: 50%;
-    }
-
-    .dot-1 {
-      width: 8px; height: 8px;
-      bottom: -16px;
-      left: 50%; transform: translateX(-50%);
-    }
-
-    .dot-2 {
-      width: 5px; height: 5px;
-      bottom: -25px;
-      left: calc(50% + 5px);
-    }
-
-    .dot-3 {
-      width: 3px; height: 3px;
-      bottom: -32px;
-      left: calc(50% + 9px);
-    }
-
-    /* ── Panel 7 "...Leah." — quiet bubble ──────── */
-    .bubble-container.quiet {
-      max-width: 30%;
-      opacity: 0.86;
-    }
-
-    .quiet .bubble-body {
-      font-size: clamp(0.52rem, 1.1vw, 0.7rem);
-      padding: 5px 10px;
-    }
-
-    /* Thinner, more delicate tail for quiet bubble */
-    .bubble-container.quiet::after {
-      width: 10px;
-      height: 9px;
-    }
-
-    /* ── Panel 3 "MINE." — starburst / impact bubble
-       clip-path polygon = 12-point starburst.
-       drop-shadow on container traces the jagged
-       outline automatically.
-       ─────────────────────────────────────────── */
-    .bubble-container.starburst {
-      max-width: 52%;
-      filter:
-        drop-shadow(0 0 0 1.5px #1a1a1a)
-        drop-shadow(0 3px 8px rgba(0, 0, 0, 0.45));
-    }
-
-    .bubble-container.starburst::after {
-      display: none;
-    }
-
-    .starburst-body {
-      /* 12-spike starburst via clip-path polygon.
-         Alternates between outer (50%) and inner (28%)
-         radius at 30° intervals. */
-      clip-path: polygon(
-        50%  0%,  61% 18%,  79%  8%,  74% 26%,
-        93% 22%,  83% 39%, 100% 50%,  83% 61%,
-        93% 78%,  74% 74%,  79% 92%,  61% 83%,
-        50% 100%, 39% 83%,  21% 92%,  26% 74%,
-         7% 78%,  17% 61%,   0% 50%,  17% 39%,
-         7% 22%,  26% 26%,  21%  8%,  39% 18%
+      inset: 0;
+      background: linear-gradient(
+        110deg,
+        transparent 25%,
+        rgba(255, 255, 255, 0.045) 50%,
+        transparent 75%
       );
-      border-radius: 0;
-      padding: 30px 22px;
-      min-width: 95px;
-      min-height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: Impact, 'Arial Black', sans-serif;
-      font-size: clamp(1.3rem, 3.6vw, 1.95rem);
-      font-weight: 900;
-      letter-spacing: 0.06em;
-      text-align: center;
-      transform: rotate(-4deg); /* slight tilt for energy */
+      background-size: 200% 100%;
+      animation: shimmer-sweep 2.6s linear infinite;
     }
 
-    /* =============================================
-       POSITION HELPERS
-       Named after compass positions on the panel.
-       All values are % so they scale with the image.
-       ============================================= */
+    @keyframes shimmer-sweep {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
 
-    .pos-top-left    { top: 5%; left: 3%; }
-    .pos-top-right   { top: 5%; right: 3%; }
-    .pos-top-center  { top: 5%; left: 50%; transform: translateX(-50%); }
-    .pos-mid-left    { top: 38%; left: 3%; }
-    .pos-mid-right   { top: 38%; right: 3%; }
-    .pos-mid-center  { top: 42%; left: 50%; transform: translateX(-50%); }
-    .pos-bot-left    { bottom: 6%; left: 3%; }
-    .pos-bot-right   { bottom: 6%; right: 3%; }
-    .pos-bot-center  { bottom: 6%; left: 50%; transform: translateX(-50%); }
+    /* Chapter badge (top-left of image) */
+    .chapter-badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 3px 10px;
+      background-color: rgba(0, 0, 0, 0.58);
+      color: #ffffff;
+      font-family: 'Arial', 'Helvetica Neue', sans-serif;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      border-radius: 50px;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      text-transform: uppercase;
+    }
 
-    /* =============================================
-       ENDING SCREEN
-       ============================================= */
-    #ending-screen {
-      width: 100%;
-      min-height: 100vh;
-      background-color: var(--bg-color);
+    /* ── Card body (text + button) ───────────────── */
+    .card-body {
       display: flex;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      gap: 20px;
-      padding: 40px 24px;
+      gap: 6px;
+      padding: 16px 16px 20px;
+      flex: 1;
     }
 
-    .ending-continued {
-      font-size: clamp(1.8rem, 5vw, 2.8rem);
+    .card-title {
+      font-size: 1.1rem;
+      font-weight: bold;
+      color: #ffffff;
+      line-height: 1.2;
+    }
+
+    .card-subtitle {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.5);
       font-style: italic;
-      color: var(--text-primary);
+    }
+
+    .card-desc {
+      font-size: 0.78rem;
+      color: rgba(255, 255, 255, 0.45);
+      font-family: 'Arial', 'Helvetica Neue', sans-serif;
+      line-height: 1.45;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-top: 2px;
+    }
+
+    /* Muted text for coming-soon cards */
+    .chapter-card.coming-soon .card-title,
+    .chapter-card.coming-soon .card-subtitle,
+    .chapter-card.coming-soon .card-desc {
+      opacity: 0.6;
+    }
+
+    /* ── "Read Now" button ───────────────────────── */
+    .read-btn {
+      margin-top: 14px;
+      width: 100%;
+      padding: 10px 0;
+      font-family: Georgia, serif;
+      font-size: 0.88rem;
+      font-style: italic;
+      color: #ffffff;
+      background-color: rgba(255, 255, 255, 0.07);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
       letter-spacing: 0.03em;
     }
 
-    .ending-credit {
-      font-size: clamp(0.9rem, 2vw, 1.1rem);
-      color: var(--text-soft);
-      font-style: italic;
+    .read-btn:hover {
+      background-color: rgba(255, 255, 255, 0.14);
+    }
+
+    /* ── "Coming Soon" badge (replaces button) ───── */
+    .coming-soon-badge {
+      margin-top: 14px;
+      width: 100%;
+      padding: 10px 0;
+      font-family: 'Arial', 'Helvetica Neue', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.3);
+      background-color: transparent;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      text-align: center;
     }
 
     /* =============================================
-       RESPONSIVE
+       FOOTER
        ============================================= */
-    @media (max-width: 760px) {
-      .panel-wrapper,
-      .panel-wrapper img {
-        border-radius: 0;
+    footer {
+      text-align: center;
+      padding: 40px 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-heart {
+      display: inline-block;
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.55);
+      animation: heartbeat 2s ease-in-out infinite;
+      line-height: 1;
+    }
+
+    @keyframes heartbeat {
+      0%   { transform: scale(1); }
+      14%  { transform: scale(1.18); }
+      28%  { transform: scale(1); }
+      42%  { transform: scale(1.12); }
+      56%  { transform: scale(1); }
+      100% { transform: scale(1); }
+    }
+
+    .footer-credit {
+      font-size: 0.85rem;
+      font-style: italic;
+      color: rgba(255, 255, 255, 0.38);
+    }
+
+    /* =============================================
+       RESPONSIVE — mobile first
+       ============================================= */
+    @media (max-width: 600px) {
+      #chapter-grid {
+        grid-template-columns: 1fr;
       }
 
-      /* Slightly larger bubbles on small screens for readability */
-      .bubble-body {
-        font-size: clamp(0.7rem, 3vw, 0.88rem);
+      .series-title {
+        font-size: clamp(2rem, 10vw, 3rem);
+      }
+
+      header {
+        padding: 48px 20px 36px;
       }
     }
   </style>
@@ -412,364 +344,226 @@
 
 <body>
 
-  <!-- ============================================
-       OPENING TITLE SCREEN
-       ============================================ -->
-  <section id="title-screen">
-    <div class="title-content">
-      <h1 class="title-main">Lulu &amp; Bagel: A Day at Home</h1>
-      <p class="title-sub">A story for Leah, with love.</p>
-      <button class="begin-btn" onclick="beginReading()">Begin Reading</button>
-    </div>
-  </section>
+  <!-- Sparkle particle canvas -->
+  <canvas id="sparkle-canvas"></canvas>
 
   <!-- ============================================
-       PANELS SECTION
-       Bubbles are injected by JS from DIALOGUE_DATA
+       HEADER
        ============================================ -->
-  <section id="panels-section">
-
-    <div class="panel-wrapper" data-panel="1">
-      <img src="./panels/panel_01.png" alt="Panel 1" />
-    </div>
-
-    <div class="panel-wrapper" data-panel="2">
-      <img src="./panels/panel_02.png" alt="Panel 2" />
-    </div>
-
-    <div class="panel-wrapper" data-panel="3">
-      <img src="./panels/panel_03.png" alt="Panel 3" />
-    </div>
-
-    <div class="panel-wrapper" data-panel="4">
-      <img src="./panels/panel_04.png" alt="Panel 4" />
-    </div>
-
-    <div class="panel-wrapper" data-panel="5">
-      <img src="./panels/panel_05.png" alt="Panel 5" />
-    </div>
-
-    <div class="panel-wrapper" data-panel="6">
-      <img src="./panels/panel_06.png" alt="Panel 6" />
-    </div>
-
-    <div class="panel-wrapper" data-panel="7">
-      <img src="./panels/panel_07.png" alt="Panel 7" />
-    </div>
-
-    <div class="panel-wrapper" data-panel="8">
-      <img src="./panels/panel_08.png" alt="Panel 8" />
-    </div>
-
-    <div class="panel-wrapper" data-panel="9">
-      <img src="./panels/panel_09.png" alt="Panel 9" />
-    </div>
-
-    <div class="panel-wrapper" data-panel="10">
-      <img src="./panels/panel_10.png" alt="Panel 10" />
-    </div>
-
-    <div class="panel-wrapper" data-panel="11">
-      <img src="./panels/panel_11.png" alt="Panel 11" />
-    </div>
-
-    <div class="panel-wrapper" data-panel="12">
-      <img src="./panels/panel_12.png" alt="Panel 12" />
-    </div>
-
-  </section>
+  <header>
+    <h1 class="series-title">Lulu &amp; Bagel</h1>
+    <p class="series-tagline">Adventures of a very full life.</p>
+    <hr class="header-divider" />
+  </header>
 
   <!-- ============================================
-       ENDING SCREEN
+       CHAPTER GRID
        ============================================ -->
-  <section id="ending-screen">
-    <p class="ending-continued">To be continued...</p>
-    <p class="ending-credit">Made with love for Leah.</p>
-  </section>
+  <main>
+    <div id="chapter-grid"></div>
+  </main>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer>
+    <span class="footer-heart">&#10084;</span>
+    <p class="footer-credit">Made with love for Leah.</p>
+  </footer>
 
 
   <script>
     /* =============================================
-       CONFIG — edit all key values here
+       CHAPTERS DATA
+       To add a new chapter: add one object here.
+       Zero other changes needed.
        ============================================= */
-    const CONFIG = {
-      bgColor:          '#0d0d0d',
-      panelMaxWidth:    720,          // px
-      panelGap:         20,           // px
-      particleCount:    50,
-      fadeInDuration:   600,          // ms — for scroll-in animation
-      fadeInThreshold:  0.15,         // 0–1 — how much of panel must be visible
-      shimmerPanel:     12,           // panel number that gets shimmer effect
-      sparkleSpeed:     1.2,          // relative multiplier for particles
-      overlayOpacity:   0.45,         // title screen cover overlay
-    };
+    const CHAPTERS = [
+      {
+        number: "01",
+        title: "A Day at Home",
+        subtitle: "Chapter 1",
+        description: "Bagel steals dropped food. Lulu conquers the roof. A tiny fairy watches from the windowsill.",
+        cover: "./chapters/chapter-01/cover.png",
+        status: "available"
+      },
+      {
+        number: "02",
+        title: "Coming Soon",
+        subtitle: "Chapter 2",
+        description: "A new adventure is on its way...",
+        cover: null,
+        status: "coming-soon"
+      }
+    ];
 
     /* =============================================
-       DIALOGUE DATA
-       Each key matches a panel number (1–12).
-       Each entry is an array of bubble objects:
-         type:      "speech" | "thought"
-         text:      the dialogue string
-         position:  CSS class from pos-* helpers
-         tail:      "left" | "right" | "top" | "bottom" | null
-         modifier:  optional extra CSS class (dramatic, quiet)
-         character: label for future reference (not rendered)
+       BUILD CHAPTER GRID
        ============================================= */
-    const DIALOGUE_DATA = {
+    function buildGrid() {
+      const grid = document.getElementById('chapter-grid');
 
-      1: [
-        {
-          type: 'speech',
-          text: 'Should we add more garlic?',
-          position: 'pos-top-left',
-          tail: 'left',
-          character: 'leah'
-        },
-        {
-          type: 'speech',
-          text: 'Always more garlic.',
-          position: 'pos-top-right',
-          tail: 'right',
-          character: 'irvin'
+      CHAPTERS.forEach(ch => {
+        const card = document.createElement('article');
+        card.className = 'chapter-card ' + ch.status;
+
+        if (ch.status === 'available') {
+          card.addEventListener('click', () => {
+            window.location.href = './reader.html?chapter=' + ch.number;
+          });
         }
-      ],
 
-      2: [],  // No dialogue
+        // ── Image area ─────────────────────────────
+        const imageWrap = document.createElement('div');
+        imageWrap.className = 'card-image-wrap';
 
-      3: [
-        {
-          type: 'thought',
-          text: 'MINE.',
-          position: 'pos-top-center',
-          tail: null,
-          modifier: 'dramatic',
-          character: 'bagel'
+        if (ch.cover) {
+          const img = document.createElement('img');
+          img.className = 'card-cover';
+          img.src = ch.cover;
+          img.alt = ch.title + ' cover';
+          imageWrap.appendChild(img);
+        } else {
+          const placeholder = document.createElement('div');
+          placeholder.className = 'card-placeholder';
+          imageWrap.appendChild(placeholder);
         }
-      ],
 
-      4: [
-        {
-          type: 'speech',
-          text: 'BAGEL—',
-          position: 'pos-mid-left',
-          tail: 'left',
-          character: 'leah'
-        },
-        {
-          type: 'speech',
-          text: 'He was SO FAST—',
-          position: 'pos-mid-right',
-          tail: 'right',
-          character: 'irvin'
+        const badge = document.createElement('span');
+        badge.className = 'chapter-badge';
+        badge.textContent = 'Ch. ' + parseInt(ch.number, 10);
+        imageWrap.appendChild(badge);
+
+        card.appendChild(imageWrap);
+
+        // ── Card body ──────────────────────────────
+        const body = document.createElement('div');
+        body.className = 'card-body';
+
+        const title = document.createElement('h2');
+        title.className = 'card-title';
+        title.textContent = ch.title;
+        body.appendChild(title);
+
+        const subtitle = document.createElement('p');
+        subtitle.className = 'card-subtitle';
+        subtitle.textContent = ch.subtitle;
+        body.appendChild(subtitle);
+
+        const desc = document.createElement('p');
+        desc.className = 'card-desc';
+        desc.textContent = ch.description;
+        body.appendChild(desc);
+
+        if (ch.status === 'available') {
+          const btn = document.createElement('button');
+          btn.className = 'read-btn';
+          btn.textContent = 'Read Now';
+          btn.addEventListener('click', e => {
+            e.stopPropagation(); // card click already navigates
+            window.location.href = './reader.html?chapter=' + ch.number;
+          });
+          body.appendChild(btn);
+        } else {
+          const csb = document.createElement('div');
+          csb.className = 'coming-soon-badge';
+          csb.textContent = 'Coming Soon';
+          body.appendChild(csb);
         }
-      ],
 
-      5: [
-        {
-          type: 'speech',
-          text: '...Did you hear that?',
-          position: 'pos-mid-left',
-          tail: 'left',
-          character: 'leah'
-        },
-        {
-          type: 'speech',
-          text: 'Was that Lulu?',
-          position: 'pos-mid-right',
-          tail: 'right',
-          character: 'irvin'
-        }
-      ],
-
-      6: [
-        {
-          type: 'speech',
-          text: 'Lulu? Lulu!!',
-          position: 'pos-top-left',
-          tail: 'left',
-          character: 'leah'
-        },
-        {
-          type: 'speech',
-          text: "She's not down here—",
-          position: 'pos-top-right',
-          tail: 'right',
-          character: 'irvin'
-        }
-      ],
-
-      7: [
-        {
-          type: 'speech',
-          text: '...Leah.',
-          position: 'pos-bot-left',
-          tail: 'left',
-          modifier: 'quiet',
-          character: 'irvin'
-        }
-      ],
-
-      8: [
-        {
-          type: 'thought',
-          text: 'I can see everything from up here.',
-          position: 'pos-top-center',
-          tail: null,
-          character: 'lulu'
-        },
-        {
-          type: 'speech',
-          text: 'LULU!!!',
-          position: 'pos-bot-center',
-          tail: 'top',
-          character: 'leah'
-        }
-      ],
-
-      9: [
-        {
-          type: 'speech',
-          text: "THEY'RE THE SAME LEFT!!",
-          position: 'pos-top-left',
-          tail: 'left',
-          character: 'leah'
-        },
-        {
-          type: 'speech',
-          text: "Go LEFT! No! YOUR left!!",
-          position: 'pos-mid-right',
-          tail: 'right',
-          character: 'irvin'
-        }
-      ],
-
-      10: [
-        {
-          type: 'speech',
-          text: 'You absolute little... I love you so much.',
-          position: 'pos-top-left',
-          tail: 'right',
-          character: 'irvin'
-        }
-      ],
-
-      11: [
-        {
-          type: 'speech',
-          text: "I can't believe that just happened.",
-          position: 'pos-top-right',
-          tail: 'left',
-          character: 'leah'
-        }
-      ],
-
-      12: []  // No dialogue — shimmer effect only
-    };
-
-    /* =============================================
-       RENDER DIALOGUE BUBBLES
-       Reads DIALOGUE_DATA and calls the appropriate
-       builder for each bubble type, then appends
-       the result to the correct .panel-wrapper.
-       ============================================= */
-    function renderDialogue() {
-      document.querySelectorAll('.panel-wrapper').forEach(wrapper => {
-        const panelNum = parseInt(wrapper.dataset.panel, 10);
-        const bubbles  = DIALOGUE_DATA[panelNum];
-        if (!bubbles || bubbles.length === 0) return;
-
-        bubbles.forEach(b => {
-          let el;
-          if (b.modifier === 'dramatic') {
-            el = buildStarburstBubble(b);
-          } else if (b.type === 'thought') {
-            el = buildThoughtBubble(b);
-          } else {
-            el = buildSpeechBubble(b);
-          }
-          wrapper.appendChild(el);
-        });
+        card.appendChild(body);
+        grid.appendChild(card);
       });
     }
 
-    /* ─── Speech bubble ─────────────────────────
-       Container carries drop-shadow outline.
-       ::after (via CSS tail-* class) is the tail.
-       ─────────────────────────────────────────── */
-    function buildSpeechBubble(b) {
-      const container = document.createElement('div');
-      const cls = ['bubble-container', 'speech'];
-      if (b.tail)      cls.push('tail-' + b.tail);
-      if (b.modifier)  cls.push(b.modifier);
-      if (b.position)  cls.push(b.position);
-      container.className = cls.join(' ');
-      if (b.character) container.dataset.character = b.character;
-
-      const body = document.createElement('div');
-      body.className = 'bubble-body';
-      body.textContent = b.text;
-      container.appendChild(body);
-      return container;
-    }
-
-    /* ─── Thought bubble ────────────────────────
-       Rounder oval, italic text, no tail.
-       Three decreasing-size dot circles trail
-       downward from the bubble toward the thinker.
-       ─────────────────────────────────────────── */
-    function buildThoughtBubble(b) {
-      const container = document.createElement('div');
-      const cls = ['bubble-container', 'thought'];
-      if (b.position) cls.push(b.position);
-      container.className = cls.join(' ');
-      if (b.character) container.dataset.character = b.character;
-
-      const body = document.createElement('div');
-      body.className = 'bubble-body thought-body';
-      body.textContent = b.text;
-      container.appendChild(body);
-
-      // Three dot trail
-      for (let i = 1; i <= 3; i++) {
-        const dot = document.createElement('span');
-        dot.className = 'thought-dot dot-' + i;
-        container.appendChild(dot);
-      }
-      return container;
-    }
-
-    /* ─── Starburst bubble (Panel 3 "MINE.") ────
-       clip-path 12-point starburst polygon.
-       drop-shadow on container traces jagged edge
-       for a crisp spiked outline automatically.
-       ─────────────────────────────────────────── */
-    function buildStarburstBubble(b) {
-      const container = document.createElement('div');
-      const cls = ['bubble-container', 'starburst'];
-      if (b.position) cls.push(b.position);
-      container.className = cls.join(' ');
-      if (b.character) container.dataset.character = b.character;
-
-      const body = document.createElement('div');
-      body.className = 'bubble-body starburst-body';
-      body.textContent = b.text;
-      container.appendChild(body);
-      return container;
-    }
-
     /* =============================================
-       BEGIN READING — smooth scroll to panel 1
+       SPARKLE PARTICLE SYSTEM
+       Canvas-based floating particles.
+       Each particle: small circle, rises upward,
+       fades in and out over its lifetime.
        ============================================= */
-    function beginReading() {
-      const section = document.querySelector('#panels-section');
-      if (section) section.scrollIntoView({ behavior: 'smooth' });
-    }
+    (function initSparkles() {
+      const canvas = document.getElementById('sparkle-canvas');
+      const ctx    = canvas.getContext('2d');
+      const COUNT  = 50;
+      const particles = [];
+
+      function resize() {
+        canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+
+      window.addEventListener('resize', resize);
+      resize();
+
+      function randomParticle(fromBottom) {
+        return {
+          x:        Math.random() * canvas.width,
+          y:        fromBottom ? canvas.height + Math.random() * 40
+                               : Math.random() * canvas.height,
+          r:        0.8 + Math.random() * 1.8,       // radius px
+          speed:    0.3 + Math.random() * 0.7,        // px per frame upward
+          drift:    (Math.random() - 0.5) * 0.4,      // horizontal sway
+          alpha:    0,
+          maxAlpha: 0.25 + Math.random() * 0.4,
+          life:     0,
+          maxLife:  220 + Math.random() * 180,        // frames
+        };
+      }
+
+      // Seed particles spread across the screen
+      for (let i = 0; i < COUNT; i++) {
+        particles.push(randomParticle(false));
+        // Stagger life so they don't all spawn at once
+        particles[i].life = Math.random() * particles[i].maxLife;
+      }
+
+      function tick() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        particles.forEach((p, i) => {
+          p.life++;
+
+          // Fade in first 20% of life, fade out last 20%
+          const progress  = p.life / p.maxLife;
+          const fadePhase = 0.2;
+          if (progress < fadePhase) {
+            p.alpha = (progress / fadePhase) * p.maxAlpha;
+          } else if (progress > 1 - fadePhase) {
+            p.alpha = ((1 - progress) / fadePhase) * p.maxAlpha;
+          } else {
+            p.alpha = p.maxAlpha;
+          }
+
+          // Move upward with gentle horizontal drift
+          p.y -= p.speed;
+          p.x += p.drift;
+
+          // Draw
+          ctx.save();
+          ctx.globalAlpha = p.alpha;
+          ctx.fillStyle   = '#ffffff';
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fill();
+          ctx.restore();
+
+          // Respawn when lifetime ends
+          if (p.life >= p.maxLife) {
+            particles[i] = randomParticle(true);
+          }
+        });
+
+        requestAnimationFrame(tick);
+      }
+
+      tick();
+    })();
 
     /* =============================================
        INIT
        ============================================= */
-    renderDialogue();
-
+    buildGrid();
   </script>
 
 </body>

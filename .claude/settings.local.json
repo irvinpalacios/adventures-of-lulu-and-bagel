@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mv panels/panel_*.png chapters/chapter-01/panels/)",
+      "Bash(rmdir panels:*)",
+      "Bash(python -c \"import json; f=open\\(''c:/Users/ipalacio/Documents/GitHub/adventures-of-lulu-and-bagel/chapters/chapter-01/meta.json''\\); data=json.load\\(f\\); print\\(''Valid JSON. Keys:'', list\\(data.keys\\(\\)\\)\\); print\\(''Panel entries:'', len\\(data[''dialogue'']\\)\\)\")",
+      "Bash(python -c \":*)"
+    ]
+  }
+}
